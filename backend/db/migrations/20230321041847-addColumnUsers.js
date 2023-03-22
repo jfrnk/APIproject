@@ -1,4 +1,4 @@
-"use strict";
+
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
@@ -8,10 +8,10 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-     await queryInterface.addColumn('Users', 'firstName', {
+     await queryInterface.addColumn(options, 'firstName', {
       type: Sequelize.STRING
      });
-     await queryInterface.addColumn('users', 'lastName', {
+     await queryInterface.addColumn(options, 'lastName', {
       type: Sequelize.STRING
      });
 
