@@ -1,9 +1,9 @@
 const express = require('express');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
 
-const {Spot, User} = require('../../db/models');
+
+const {Spot, User, Review} = require('../../db/models');
 const {restoreUser} = require('../../utils/auth');
-const spot = require('../../db/models/spot');
+
 const router = express.Router();
 
 router.get('', async(req, res) =>{
@@ -78,5 +78,16 @@ router.put('/:id', async (req, res) =>{
         spot.price = price;
         return res.json(spot);
     }
+})
+
+router.post('/:id/reviews', async (req, res) =>{
+    const spotid = req.params.id;
+    const userid = req.user.id;
+
+    const {review, stars} = req.body;
+
+    const newReview = await Review.create({spotId: spotid, userId: userid, review, stars});
+
+    return res.json(newReview);
 })
 module.exports = router;

@@ -5,6 +5,7 @@ const { setTokenCookie } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
 const { restoreUser } = require('../../utils/auth.js');
 const spotRouter = require('./spots.js');
+const reviewRouter = require('./reviews.js');
 
 router.post('/test', function(req, res) {
     res.json({ requestBody: req.body });
@@ -44,6 +45,8 @@ router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
 router.use('/spots', spotRouter);
+
+router.use('/reviews', reviewRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
