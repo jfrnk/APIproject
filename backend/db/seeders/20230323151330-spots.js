@@ -19,7 +19,8 @@ module.exports = {
         lng: -100.9,
         name: 'Container House',
         description: 'House made from containers',
-        price: 200.98
+        price: 200.98,
+        ownerId: 1
       },
       {
         address: '234 user st.',
@@ -30,7 +31,8 @@ module.exports = {
         lng: 182.90,
         name: 'Emirates',
         description: 'THe emirates',
-        price: 340.90
+        price: 340.90,
+        ownerId: 2
       },
       {
         address: '567 franklin st',
@@ -41,7 +43,8 @@ module.exports = {
         lng: 76.95,
         name: 'United',
         description: 'United hotel group',
-        price: 394.98
+        price: 394.98,
+        ownerId: 3
       }
     ], {});
   },

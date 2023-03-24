@@ -50,10 +50,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
-      }, ownerId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      }
+      },
     },
     {
       sequelize,

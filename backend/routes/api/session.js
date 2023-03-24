@@ -63,7 +63,7 @@ router.post(
     }
   );
 
-  // Restore session user
+  // Get session user
 router.get(
     '/',
     (req, res) => {
