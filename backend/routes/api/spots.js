@@ -60,7 +60,7 @@ router.put('/:id', async (req, res) =>{
     const spot = await Spot.findByPk(spotId);
     if(!spot){
         res.statusCode = 404;
-        throw new Error(`Spot at id ${spotId} does not exist`);
+        throw new sError(`Spot at id ${spotId} does not exist`);
     }
 
     if(!(spot.ownerId == req.user.id)){
