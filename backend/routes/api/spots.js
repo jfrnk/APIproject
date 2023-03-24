@@ -51,6 +51,32 @@ router.delete('/:id', async (req, res) =>{
     }else{
         throw new Error('Only the owner can Delete a spot')
     }
+})
 
+router.put('/:id', async (req, res) =>{
+    const userId = req.user.id;
+    const spotId = req.params.id;
+    const {address, city, state, country, lat, lng, name, description, price} = req.body;
+    const spot = await Spot.findByPk(spotId);
+    if(!spot){
+        res.statusCode = 404;
+        throw new Error(`Spot at id ${spotId} does not exist`);
+    }
+
+    if(!(spot.ownerId == req.user.id)){
+        res.status(400);
+        res.json({ message :'Only the owner can edit a spot'} );
+    }else{
+        spot.address = address;
+        spot.city = city;
+        spot.state = state;
+        spot.country = country;
+        spot.lat = lat;
+        spot.lng = lng,
+        spot.name = name;
+        spot.description = description;
+        spot.price = price;
+        return res.json(spot);
+    }
 })
 module.exports = router;
