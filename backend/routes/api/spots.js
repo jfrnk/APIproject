@@ -90,4 +90,13 @@ router.post('/:id/reviews', async (req, res) =>{
 
     return res.json(newReview);
 })
+
+router.get('/:id/reviews', async (req, res) =>{
+    const spotId = req.params.id;
+    const spot = await Spot.findByPk(spotId, {
+        include: [{model: Review}, {model: User}]
+    })
+    res.json(spot)
+
+})
 module.exports = router;
