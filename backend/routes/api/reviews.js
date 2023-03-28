@@ -14,12 +14,11 @@ router.get('/current', async (req, res) =>{
     // res.json(user);
 
     const reviews = await Review.findAll({
-        where: {
-            userId: id
-        },
+
         include: [{model: Spot}]
 })
-res.json({UserInfo: user, Reviews:reviews})
+console.log(reviews.userId);
+res.json(reviews)
 })
 
 router.put('/:id', async (req, res) =>{

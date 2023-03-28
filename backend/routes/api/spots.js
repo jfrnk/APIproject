@@ -1,7 +1,7 @@
 const express = require('express');
 
 
-const {Spot, User, Review} = require('../../db/models');
+const {Spot, User, Review, Booking} = require('../../db/models');
 const {restoreUser} = require('../../utils/auth');
 
 const router = express.Router();
@@ -60,7 +60,7 @@ router.put('/:id', async (req, res) =>{
     const spot = await Spot.findByPk(spotId);
     if(!spot){
         res.statusCode = 404;
-        throw new sError(`Spot at id ${spotId} does not exist`);
+        throw new Error(`Spot at id ${spotId} does not exist`);
     }
 
     if(!(spot.ownerId == req.user.id)){
@@ -83,10 +83,10 @@ router.put('/:id', async (req, res) =>{
 router.post('/:id/reviews', async (req, res) =>{
     const spotid = req.params.id;
     const userid = req.user.id;
-
+    const spot = Spot.findByPk(spotid);
     const {review, stars} = req.body;
 
-    const newReview = await Review.create({spotId: spotid, userId: userid, review, stars});
+    const newReview = await Review.create({review, stars, spotId:spotid, userId:userid});
 
     return res.json(newReview);
 })
@@ -98,5 +98,13 @@ router.get('/:id/reviews', async (req, res) =>{
     })
     res.json(spot)
 
+})
+
+router.post('/:id/bookings', async (req, res) =>{
+    const spotid = req.params.id;
+    const userid = req.user.id
+    const {startDate, endDate} = req.body;
+    const booking = await Booking.create({startDate, endDate, spotId:spotid, userId:userid});
+    res.json(booking);
 })
 module.exports = router;
