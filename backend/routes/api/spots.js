@@ -107,4 +107,16 @@ router.post('/:id/bookings', async (req, res) =>{
     const booking = await Booking.create({startDate, endDate, spotId:spotid, userId:userid});
     res.json(booking);
 })
+
+router.get('/:id/bookings', async (req, res) =>{
+    const spotid = req.params.id;
+    const userid = req.user.id;
+    const bookings = await Booking.findByPk(spotid, {
+        where:{
+            userId: userid
+        },
+        include: [{model: Spot}]
+    })
+    res.json(bookings);
+})
 module.exports = router;
