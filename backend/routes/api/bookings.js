@@ -30,4 +30,16 @@ router.put('/:id', async(req, res) =>{
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    const bookingid = req.params.id;
+    const booking = await Booking.findByPk(bookingid);
+    if(req.user.id === booking.userId){
+        await booking.destroy();
+        res.json({message: 'Booking has been deleted'})
+    }else{
+        const err = new Error({message: 'Authentication Required'});
+        err.statusCode = 400;
+         res.json(err);
+    }
+})
 module.exports = router;
