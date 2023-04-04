@@ -1,7 +1,7 @@
 const express = require('express');
 
 
-const {Spot, User, Review, Booking, SpotImage} = require('../../db/models');
+const {Spot, User, Review, Booking, SpotImage, ReviewImage} = require('../../db/models');
 const {restoreUser} = require('../../utils/auth');
 
 const router = express.Router();
@@ -97,7 +97,7 @@ router.post('/:id/reviews', async (req, res) =>{
 router.get('/:id/reviews', async (req, res) =>{
     const spotId = req.params.id;
     const spot = await Spot.findByPk(spotId, {
-        include: [{model: Review}, {model: User}]
+        include: [{model: Review}, {model: User, as: 'Owner'}]
     })
     res.json(spot)
 
@@ -132,7 +132,7 @@ router.post('/:id/images', async (req, res) =>{
 console.log(user);
 console.log(spot.ownerId);
     if(user === spot.ownerId){
-        const spotImg = SpotImage.create({spotId: spotid, url, preview});
+        const spotImg = await SpotImage.create({spotId: spotid, url, preview});
         res.json(spotImg);
     }
     else{

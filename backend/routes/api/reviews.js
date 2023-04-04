@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {Spot, User, Review} = require('../../db/models');
+const {Spot, User, Review, ReviewImage} = require('../../db/models');
 
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.get('/current', async (req, res) =>{
 
     const reviews = await Review.findAll({
 
-        include: [{model: Spot}]
+        include: [{model: Spot}, {model: ReviewImage}, {model: User}]
 })
 console.log(reviews.userId);
 res.json(reviews)
@@ -49,5 +49,19 @@ router.delete('/:id', async (req, res) =>{
     }
 })
 
+router.post('/:id/images', async (req, res) => {
+    const reviewid = req.params.id;
+    const user = req.user.id;
+    const review = await Review.findByPk(reviewid);
+    const {url} = req.body;
+    // console.log(review.userId);
+    if(user === review.userId){
+        const reviewImg = await ReviewImage.create({reviewId: reviewid, url});
+        res.json(reviewImg);
+    }else{
+        res.status(400);
+        throw new Error('Authentication Required');
+    }
+})
 
 module.exports = router;
