@@ -1,13 +1,15 @@
 const express = require('express');
 
 
-const {Spot, User, Review, Booking} = require('../../db/models');
+const {Spot, User, Review, Booking, SpotImage} = require('../../db/models');
 const {restoreUser} = require('../../utils/auth');
 
 const router = express.Router();
 
 router.get('', async(req, res) =>{
-    const spots = await Spot.findAll();
+    const spots = await Spot.findAll({
+        include: [{model: SpotImage}]
+    });
 
     res.status(200);
     return res.json({spots: spots});
@@ -35,7 +37,8 @@ router.get('/current', async(req, res) =>{
 router.get('/:id', async (req, res) =>{
     const spotId = req.params.id;
     const spot = await Spot.findByPk(spotId, {
-        include:[{model: User}]
+        include:[{model: User, as: 'Owner'}, {model: SpotImage}],
+        exclude :[User.username]
     })
 
         return res.json(spot);
@@ -118,5 +121,23 @@ router.get('/:id/bookings', async (req, res) =>{
         include: [{model: Spot}]
     })
     res.json(bookings);
+})
+
+router.post('/:id/images', async (req, res) =>{
+    const spotid = req.params.id;
+    const user = req.user.id;
+    const spot = await Spot.findByPk(spotid);
+    const {url, preview} = req.body;
+
+console.log(user);
+console.log(spot.ownerId);
+    if(user === spot.ownerId){
+        const spotImg = SpotImage.create({spotId: spotid, url, preview});
+        res.json(spotImg);
+    }
+    else{
+        res.status(400);
+        throw new Error('Authentication required')
+    }
 })
 module.exports = router;
