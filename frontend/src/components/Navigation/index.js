@@ -16,16 +16,16 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-            <>
+            <div id="nav-links">
                 <LoginFormModal />
                 <SignupFormModal />
-            </>
+            </div>
         );
     }
 
     return (
-        <ul>
-            <li>
+        <ul id="nav-link-container">
+            <li id='home-list'>
                 <NavLink exact to='/'>Home</NavLink>
                 {isLoaded && sessionLinks}
             </li>

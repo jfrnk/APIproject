@@ -9,3 +9,23 @@
     display: flex;
 
 }
+
+#nav-links {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    justify-content: center;
+
+}
+
+#nav-link-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#home-list {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
