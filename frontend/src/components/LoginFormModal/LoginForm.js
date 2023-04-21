@@ -27,29 +27,37 @@ function LoginForm() {
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
-
-            <input className="input100"
-                type="text"
-                placeholder="Username or Email"
-                value={credential}
-                onChange={(e) => setCredential(e.target.value)}
-                required
-            />
-
-
-
-
-            <input className="input100"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
+            <div className="wrap-input100">
+                <input className="input100"
+                    type="text"
+                    placeholder="Username or Email"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                />
+                <span className="focus-input100" data-placeholder="Email"></span>
+            </div>
 
 
+            <div className="wrap-input100">
+                <input className="input100"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <span className="focus-input100" data-placeholder="Email"></span>
+            </div>
 
-            <button type="submit">Log In</button>
+            <div className="container-login100-form-btn">
+                <div className="wrap-login100-form-btn">
+                    <div className="login100-form-bgbtn"></div>
+                    <button type="submit" className="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+            </div>
         </form>
     );
 }
