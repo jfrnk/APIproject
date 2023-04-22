@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../../fonts/poppins/Poppins-Regular.ttf');
+}
+
+* {
+    font-family: Poppins-Regular;
+    font-size: 16px;
+}
+
 #profile-button {
     background-color: white;
     border: none;
@@ -12,20 +22,35 @@
 
 #nav-links {
     display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    justify-content: center;
+    flex-direction: row;
+    max-width: 100%;
+    justify-content: space-between;
+    /* align-items: flex-end; */
+    padding-top: 20px;
+
 
 }
 
 #nav-link-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-items: center;
+
+    background: linear-gradient(to left, #21d4fd, #b721ff);
 }
 
 #home-list {
+    padding: 20px;
+    padding-right: 40px;
     display: flex;
-    flex-direction: column;
-    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+button {
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-around;
+
 }
