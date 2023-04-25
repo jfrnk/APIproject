@@ -20,16 +20,16 @@
 
 }
 
-#nav-links {
+/* #nav-links {
     display: flex;
     flex-direction: row;
     max-width: 100%;
     justify-content: space-between;
-    /* align-items: flex-end; */
+    align-items: flex-end;
     padding-top: 20px;
 
 
-}
+} */
 
 #nav-link-container {
     display: flex;
@@ -39,18 +39,22 @@
     background: linear-gradient(to left, #21d4fd, #b721ff);
 }
 
-#home-list {
+/* #home-list {
     padding: 20px;
     padding-right: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-}
+} */
 
 button {
     border-radius: 25px;
     display: flex;
     justify-content: space-around;
 
+}
+
+.logo {
+    size: 30px;
 }

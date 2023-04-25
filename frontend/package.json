@@ -41,5 +41,5 @@
   "devDependencies": {
     "redux-logger": "^3.0.6"
   },
-  "proxy": "https://api-project-z92g.onrender.com"
+  "proxy": "https://api-project-z92g.onrender.com/"
 }

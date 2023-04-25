@@ -1,7 +1,9 @@
+
 import { csrfFetch } from './csrf';
 // import thunk from 'redux-thunk';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser'
+const GRAB_SPOTS = 'session/setSpots'
 // const RESTORE_USER = 'session/userRestore'
 const setUser = (user) => {
     return {
@@ -16,6 +18,13 @@ const removeUser = (user) => {
         payload: user
     };
 }
+
+const setSpots = (spots) => {
+    return {
+        type: GRAB_SPOTS,
+        payload: spots
+    };
+};
 
 export const login = (user) => async (dispatch) => {
     const { credential, password } = user;
@@ -64,6 +73,14 @@ export const logout = (user) => async dispatch => {
     dispatch(removeUser());
     return response;
 };
+//SPOTS
+export const grabSpots = (spots) => async dispatch => {
+    const response = await csrfFetch(`/api/spots`);
+    const data = await response.json();
+    dispatch(setSpots(data.spots));
+    return response;
+}
+
 const sessionReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
@@ -74,6 +91,10 @@ const sessionReducer = (state = initialState, action) => {
         case REMOVE_USER:
             newState = Object.assign({}, state);
             newState.user = null;
+            return newState;
+        case GRAB_SPOTS:
+            newState = Object.assign({}, state);
+            newState.spots = action.payload;
             return newState;
         default:
             return state;

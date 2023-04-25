@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+
 import './LoginModal.css';
 <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"></link>
 function LoginForm() {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+
+    if (sessionUser) return (<Redirect to="/spots" />);
 
     const handleSubmit = (e) => {
         e.preventDefault();

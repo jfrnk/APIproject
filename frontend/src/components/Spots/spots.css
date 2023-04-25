@@ -1,0 +1,13 @@
+#spot-container {
+    position: absolute;
+    background-color: grey;
+    height: 300px;
+    width: 700px;
+}
+
+#spot-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+    grid-template-rows: '#spot-card' '#spot-card' '#spot-card' '#spot-card';
+    background-color: gray;
+}

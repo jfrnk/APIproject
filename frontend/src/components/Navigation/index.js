@@ -5,6 +5,8 @@ import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import './Navigation.css';
 import SignupFormModal from "../SignupFormModal";
+import logo from '../../assets/Sharebnb-logo-nbg.png';
+
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -26,7 +28,9 @@ function Navigation({ isLoaded }) {
     return (
         <div id="nav-link-container">
             <span id='home-list'>
-                <NavLink exact to='/'>Home</NavLink>
+                <NavLink exact to='/'>
+                    <img src={logo} className="logo" alt="sharebnb logo"></img>
+                </NavLink>
                 {isLoaded && sessionLinks}
             </span>
         </div>
