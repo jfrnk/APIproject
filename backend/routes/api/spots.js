@@ -48,12 +48,12 @@ router.delete('/:id', async (req, res) => {
     const spotId = req.params.id;
     const spot = await Spot.findByPk(spotId);
 
-    // if(spot.ownerId === req.user.id){
-    await spot.destroy();
-    return res.json({ message: "Your spot has been successfully Deleted" })
-    // }else{
-    throw new Error('Only the owner can Delete a spot')
-    // }
+    if (spot.ownerId === req.user.id) {
+        await spot.destroy();
+        return res.json({ message: "Your spot has been successfully Deleted" })
+    } else {
+        throw new Error('Only the owner can Delete a spot')
+    }
 })
 
 router.put('/:id', async (req, res) => {
