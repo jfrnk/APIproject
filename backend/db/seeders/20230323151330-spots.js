@@ -20,7 +20,7 @@ module.exports = {
         name: 'Container House',
         description: 'House made from containers',
         price: 200.98,
-        ownerId: 1
+        ownerId: 4
       },
       {
         address: '234 user st.',
@@ -32,7 +32,7 @@ module.exports = {
         name: 'Emirates',
         description: 'THe emirates',
         price: 340.90,
-        ownerId: 2
+        ownerId: 4
       },
       {
         address: '567 franklin st',
@@ -44,7 +44,7 @@ module.exports = {
         name: 'United',
         description: 'United hotel group',
         price: 394.98,
-        ownerId: 3
+        ownerId: 4
       }
     ], {});
   },
