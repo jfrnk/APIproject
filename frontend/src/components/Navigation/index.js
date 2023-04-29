@@ -8,13 +8,17 @@ import SignupFormModal from "../SignupFormModal";
 import logo from '../../assets/Sharebnb-logo-nbg.png';
 
 
+
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <>
+                <ProfileButton user={sessionUser} />
+                <button><NavLink id='create-button' exact to='/create-spot'> Create Spot</NavLink></button>
+            </>
         );
     } else {
         sessionLinks = (

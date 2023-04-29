@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Poppins-Regular;
+    src: url(../../fonts/poppins/Poppins-Regular.ttf);
+}
+
 #password-input {
     font-size: 15px;
     color: #555;
@@ -202,4 +207,10 @@ input {
 
 .wrap-login100-form-btn:hover .login100-form-btn {
     left: 0;
+}
+
+#add-spot-button {
+    text-decoration: none;
+    color: white;
+    font-family: Poppins-Regular;
 }

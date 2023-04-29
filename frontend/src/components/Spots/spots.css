@@ -1,13 +1,27 @@
 #spot-container {
     position: absolute;
-    background-color: grey;
-    height: 300px;
-    width: 700px;
+    padding-top: 20px;
 }
 
 #spot-container {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr 2fr;
     grid-template-rows: '#spot-card' '#spot-card' '#spot-card' '#spot-card';
-    background-color: gray;
+    grid-gap: 20px;
+}
+
+#spot-img {
+    width: 274.73px;
+    height: 289.2px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px lightgrey;
+}
+
+
+
+#spot-card {
+    display: grid;
+    grid-template-columns: 1.5fr;
+    grid-template-areas: "image" "text";
+
 }

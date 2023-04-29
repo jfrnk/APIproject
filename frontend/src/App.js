@@ -6,6 +6,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotView from "./components/Spots";
+import CreateSpotPage from "./components/pages/CreateSpotPage";
+import ImagesPage from "./components/pages/ImagesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,16 +21,25 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path='/signup'>
-            <SignupFormPage />
+          <Route path='/create-spot'>
+            <CreateSpotPage />
+          </Route>
+
+          <Route exact path='/'>
+            <SpotView />
+          </Route>
+
+          <Route exact path='/photos'>
+            <ImagesPage />
           </Route>
 
         </Switch>
 
+
       )}
-      <Route path='/spots'>
-        <SpotView />
-      </Route>
+      <Switch>
+
+      </Switch>
     </>
   );
 }
